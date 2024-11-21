@@ -11,7 +11,7 @@ class Brain
 		Brain &operator=(const Brain &src);
 		~Brain();
 
-	private:
+	public:
 		std::string ideas[100];
 };
 

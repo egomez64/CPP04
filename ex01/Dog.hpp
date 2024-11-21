@@ -14,6 +14,8 @@ class Dog : public Animal
 
 	public:
 		void makeSound() const;
+		std::string getIdea(int i);
+		void setIdea(std::string _idea, int i);
 
 	private:
 		Brain *_brain;

@@ -18,7 +18,8 @@ Dog &Dog::operator=(const Dog &src)
 	if (this != &src)
 	{
 		this->type = src.type;
-		this->_brain = src._brain;
+		this->_brain = new Brain();
+		(*this->_brain) = (*src._brain);
 	}
 	return (*this);
 }
@@ -32,4 +33,14 @@ Dog::~Dog()
 void Dog::makeSound() const
 {
 	std::cout << "Wouf Wouf" << std::endl;
+}
+
+std::string Dog::getIdea(int i)
+{
+	return this->_brain->ideas[i];
+}
+
+void Dog::setIdea(std::string _idea, int i)
+{
+	this->_brain->ideas[i] = _idea;
 }

@@ -6,7 +6,6 @@ int main()
 {
 
 	//init
-	const Animal* deep_copy;
 	const Animal* tab[6];
 	for (int i = 0; i < 6; i++)
 	{
@@ -15,7 +14,6 @@ int main()
 		else
 			tab[i] = new Dog();
 	}
-	deep_copy = tab[0];
 
 	//display
 	for (int i = 0; i < 6; i++)
@@ -26,5 +24,15 @@ int main()
 	//free
 	for (int i = 0; i < 6; i++)
 		delete tab[i];
+
+	//deep copy check
+	Cat cat;
+	cat.setIdea("Miaou", 0);
+	Cat cat2 = cat;
+
+	std::cout << cat2.getIdea(0) << std::endl;
+	cat2.setIdea("Meow", 0);
+	std::cout << cat.getIdea(0) << std::endl;
+	std::cout << cat2.getIdea(0) << std::endl;
 	return 0;
 }
