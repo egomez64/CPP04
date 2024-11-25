@@ -28,6 +28,11 @@ Animal::~Animal()
 	std::cout << "Animal destructor called" << std::endl;
 }
 
+void Animal::makeSound() const
+{
+	std::cout << "This animal has no type, he can't do any sounds" << std::endl;
+}
+
 void Animal::setType(std::string _type)
 {
 	this->type =_type;
