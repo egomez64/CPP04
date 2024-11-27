@@ -7,11 +7,8 @@ AMateria::AMateria()
 
 AMateria::AMateria(std::string const &_type)
 {
-	int y = 0;
 	std::cout << "AMateria constructor called" << std::endl;
 	this->type = _type;
-	for (std::string::iterator i = this->type.begin(); i != this->type.end(); i++)
-		this->type[y] = tolower(*i);
 }
 
 AMateria::AMateria(const AMateria &src)
@@ -37,4 +34,7 @@ const std::string &AMateria::getType() const
 	return this->type;
 }
 
-void AMateria::use(ICharacter &target) {}
+void AMateria::use(ICharacter &target)
+{
+	(void)target;
+}

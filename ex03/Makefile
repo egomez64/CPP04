@@ -1,17 +1,17 @@
-Name = materia
+NAME = materia
 
 GXX = c++
 
-CFLAGS = -Wall -Werror -Wextra -g --std=c++98
+CFLAGS = -Wall -Werror -Wextra -g -std=c++98
 
 SRC = main.cpp \
 		AMateria.cpp \
 		Character.cpp \
 		Cure.cpp \
 		Ice.cpp \
-		ICharacter.cpp \
-		IMateriaSource.cpp \
 		MateriaSource.cpp
+
+OBJ = $(SRC:.cpp=.o)
 
 HEADER = AMateria.hpp \
 			Character.hpp \
@@ -21,22 +21,20 @@ HEADER = AMateria.hpp \
 			IMateriaSource.hpp \
 			MateriaSource.hpp
 
-OBJ = $(SRC:.cpp=.o)
+all: $(NAME)
 
-all : $(NAME)
-
-$(NAME) : $(OBJ)
+$(NAME): $(OBJ)
 	$(GXX) $(CFLAGS) $^ -o $@
 
-%.o : %.c
+%.o: %.cpp
 	$(GXX) $(CFLAGS) -c $< -o $@
 
-clean :
+clean:
 	rm -rf $(OBJ)
 
-fclean : clean
+fclean: clean
 	rm -rf $(NAME)
 
-re : fclean all
+re: fclean all
 
 .PHONY : all clean fclean re

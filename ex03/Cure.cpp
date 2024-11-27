@@ -1,12 +1,12 @@
 #include "Cure.hpp"
 
-Cure::Cure()
+Cure::Cure() : AMateria::AMateria()
 {
 	std::cout << "Cure default constructor called" << std::endl;
 	this->type = "cure";
 }
 
-Cure::Cure(const Cure &src)
+Cure::Cure(const Cure &src) : AMateria::AMateria(src)
 {
 	std::cout << "Cure copy constructor called" << std::endl;
 	*this = src;

@@ -1,15 +1,13 @@
 #include "Character.hpp"
 
-Character::Character()
+Character::Character() : inventory(), name() 
 {
 	std::cout << "Character default constructor called" << std::endl;
-	this->name = "none";
 }
 
-Character::Character(const std::string _name)
+Character::Character(const std::string _name) : inventory(), name(_name)
 {
 	std::cout << "Character default constructor called" << std::endl;
-	this->name = _name;
 }
 
 Character::Character(const Character &src)
@@ -53,7 +51,21 @@ void Character::equip(AMateria *m)
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->inventory[i] == NULL)
+		{
 			this->inventory[i] = m;
+			break ;
+		}
 	}
-	return ;
+}
+
+void Character::unequip(int idx)
+{
+	if (this->inventory[idx])
+		this->inventory[idx] = NULL;
+}
+
+void Character::use(int idx, ICharacter &target)
+{
+	if (this->inventory[idx])
+		this->inventory[idx]->use(target);
 }
