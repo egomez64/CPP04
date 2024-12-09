@@ -37,6 +37,8 @@ MateriaSource::~MateriaSource()
 
 void MateriaSource::learnMateria(AMateria *m)
 {
+	if (!m)
+		return ;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->stock[i] == NULL)

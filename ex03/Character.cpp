@@ -1,11 +1,11 @@
 #include "Character.hpp"
 
-Character::Character() : inventory(), name() 
+Character::Character() : inventory(), name(), floor()
 {
 	std::cout << "Character default constructor called" << std::endl;
 }
 
-Character::Character(const std::string _name) : inventory(), name(_name)
+Character::Character(const std::string _name) : inventory(), name(_name), floor()
 {
 	std::cout << "Character default constructor called" << std::endl;
 }
@@ -36,9 +36,11 @@ Character::~Character()
 	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (this->inventory[i] != NULL)
+		if (!(this->inventory[i]->getType()).empty())
 			delete this->inventory[i];
 	}
+	if (this->getFloor() != NULL)
+		delete this->floor;
 }
 
 const std::string &Character::getName() const
@@ -48,6 +50,8 @@ const std::string &Character::getName() const
 
 void Character::equip(AMateria *m)
 {
+	if (!m)
+		return ;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->inventory[i] == NULL)
@@ -61,11 +65,28 @@ void Character::equip(AMateria *m)
 void Character::unequip(int idx)
 {
 	if (this->inventory[idx])
+	{
+		this->setFloor(this->inventory[idx]);
 		this->inventory[idx] = NULL;
+	}
 }
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (this->inventory[idx])
+	if (idx >= 0 && idx < 4 && this->inventory[idx])
 		this->inventory[idx]->use(target);
+	else
+		std::cout << "* do nothing *" << std::endl;
+}
+
+void Character::setFloor(AMateria *m)
+{
+	if (this->getFloor() != NULL)
+		delete this->floor;
+	this->floor = m;
+}
+
+AMateria *Character::getFloor()
+{
+	return (this->floor);
 }
