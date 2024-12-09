@@ -36,7 +36,7 @@ Character::~Character()
 	std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		if (!(this->inventory[i]->getType()).empty())
+		if (this->inventory[i] != NULL)
 			delete this->inventory[i];
 	}
 	if (this->getFloor() != NULL)
@@ -52,6 +52,11 @@ void Character::equip(AMateria *m)
 {
 	if (!m)
 		return ;
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->inventory[i] == m)
+			return ;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->inventory[i] == NULL)
