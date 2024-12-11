@@ -1,4 +1,4 @@
-NAME = brain
+NAME = abs
 
 GXX = c++
 
